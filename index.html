@@ -3,18 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>StarLight</title>
+  <script type="application/x-javascript">
+    addEventListener("load", function () {
+        setTimeout(createStars, 0);
+    }, false);
+    addEventListener("resize", function () {
+      StarLight.set(100,100,6)
+      setTimeout(createStars, 0);
+    }, false);
+
+    function createStars() {
+      StarLight.init("canvas", window.innerWidth, window.innerHeight)
+      StarLight.star()
+    }
+  </script>
 </head>
 <body>
   <canvas id="canvas"></canvas>
 </body>
 <script type="text/javascript" src="starlight.js"></script>
-<script>
-  StarLight.init("canvas", screen.width, screen.height)
-  StarLight.star()
-</script>
 <style>
   body {
     margin: 0;
+    overflow: hidden;
   }
 </style>
 </html>
