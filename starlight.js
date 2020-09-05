@@ -13,6 +13,7 @@ const StarLight = function () {
   const setting = {
     width: screen.width,
     height: screen.height,
+    requestID: null,
     canvas: null,
     content: null,
     maxStar: 100,
@@ -58,7 +59,7 @@ const StarLight = function () {
       setting.content.fill()
     }
     setting.content.restore()
-    window.requestAnimationFrame(updateStar)
+    setting.requestID = window.requestAnimationFrame(updateStar)
   }
   function createNewStar() {
     setTimeout(function() {
@@ -93,10 +94,11 @@ const StarLight = function () {
     updateStar()
     createNewStar()
   }
-  function set (num, maxStar, newStar) {
-    setting.num = num
+  function set (number, maxStar, newStar) {
+    setting.number = number
     setting.maxStar = maxStar
     setting.newStar = newStar
+    window.cancelAnimationFrame(setting.requestID);
   }
   return {
     init: init,
